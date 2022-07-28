@@ -1,0 +1,20 @@
+command /manganello:
+    permission: uomonutria.manganello
+    permission message: &cNessun Permesso.
+    trigger:
+        if {manganello.%player%} is not set:
+            set {manganello.%player%} to true
+            send "&bHai abilitato il manganello."
+        else:
+            delete {manganello.%player%}
+            send "&bHai disabilitato il manganello."
+ 
+on damage:
+    if damage cause is attack:
+        attacker is set
+        attacker is a player
+        victim is a player
+        {manganello.%attacker%} is not set
+        cancel event
+    else:
+        stop
